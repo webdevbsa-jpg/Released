@@ -1,15 +1,10 @@
 # Dachi Trader v13.7.6 — Professional Guide, Recommended Settings & XAUUSD Development Roadmap
 
-> Dokumen ini dibuat sebagai **sumber utama versi Markdown**. Jika ada revisi, edit file `.md` ini terlebih dahulu, lalu regenerate PDF.
->
-> Link download EX5: **http://dachi-trader.com/download/Dachi_Trader_v13_7_6.ex5**
-
 ---
 
 ## Executive Summary
 
 Dachi Trader v13.6.1 sampai v13.7.6 bergerak dari EA crossing MA biasa menjadi sistem semi-adaptif yang memiliki:
-
 - filter struktur MA untuk menghindari false cross,
 - recovery untuk sinyal yang awalnya terblokir tetapi kemudian terbukti benar,
 - konfirmasi Bulls/Bears power,
@@ -19,16 +14,6 @@ Dachi Trader v13.6.1 sampai v13.7.6 bergerak dari EA crossing MA biasa menjadi s
 - dokumentasi dan rekomendasi setting per timeframe.
 
 Untuk **XAUUSD M5 dan M15**, EA ini paling cocok dipakai sebagai **trend-pullback scalper / intraday follower**, bukan sebagai grid, martingale, atau counter-news robot. Kekuatan utamanya adalah membaca crossing + struktur MA. Kelemahannya adalah EA masih perlu filter market regime, news/session, dan adaptasi parameter agar lebih stabil pada kondisi emas yang sangat berubah-ubah.
-
----
-
-## Section Download File
-
-| Item | Link |
-|---|---|
-| Dachi Trader v13.7.6 EX5 | http://dachi-trader.com/download/Dachi_Trader_v13_7_6.ex5 |
-| Catatan | Re-attach EA setelah update karena nama file/version berubah. |
-| Rekomendasi sebelum live | Jalankan Strategy Tester dan forward test minimal 1–2 minggu di broker yang sama. |
 
 ---
 
@@ -194,7 +179,17 @@ Untuk **XAUUSD M5 dan M15**, EA ini paling cocok dipakai sebagai **trend-pullbac
 
 ---
 
-## 3. Fixed Bug List v13.6.1 sampai v13.7.6
+## 3. Section Download File
+
+| Item | Link |
+|---|---|
+| Dachi Trader v13.7.6 EX5 | http://dachi-trader.com/download/Dachi_Trader_v13_7_6.ex5 |
+| Catatan | Re-attach EA setelah update karena nama file/version berubah. |
+| Rekomendasi sebelum live | Jalankan Strategy Tester dan forward test minimal 1–2 minggu di broker yang sama. |
+
+---
+
+## 4. Fixed Bug List v13.6.1 sampai v13.7.6
 
 | Versi | Fixed Bug / Hardening |
 |---|---|
@@ -213,26 +208,11 @@ Untuk **XAUUSD M5 dan M15**, EA ini paling cocok dipakai sebagai **trend-pullbac
 
 Konteks pasar terbaru: laporan World Gold Council 2026 menekankan bahwa emas masih dipengaruhi volatilitas tinggi, risiko geopolitik, demand bank sentral, dan ekspektasi suku bunga. Untuk XAUUSD, kondisi ini membuat M5/M15 sangat sensitif terhadap spike berita, perubahan USD yield, dan liquidity sweep. Artinya EA crossing MA harus punya regime filter, news/session protection, dan adaptive risk.
 
-### Kekurangan EA
-
-| Area | Kekurangan | Dampak pada XAUUSD | Penanggulangan |
-|---|---|---|---|
-| Regime detection | EA sudah punya F10/VR/SP, tetapi belum punya klasifikasi market final seperti Trend / Range / News Spike / Exhaustion. | Parameter yang cocok saat trend bisa buruk saat range. | Buat modul Market Regime Score dengan bobot ATR ratio, MA slope, ADX/DI, session, spread, dan candle body. |
-| News awareness | Belum ada kalender news otomatis. | XAUUSD sering spike saat CPI, NFP, FOMC, Jobless Claims. | Tambah news blackout manual/otomatis: block entry X menit sebelum/sesudah news besar. |
-| Liquidity sweep | F10 mengurangi false cross, tetapi belum membaca stop-hunt wick secara eksplisit. | Entry bisa muncul setelah wick sweep lalu reversal. | Tambah wick-to-body filter, previous high/low sweep detector, dan rejection candle confirmation. |
-| Adaptive TP/SL | TP/SL berbasis ATR, tetapi belum adaptif terhadap regime final. | Di range TP terlalu jauh; di trend TP terlalu dekat. | Buat TP/SL profile otomatis: Range=TP1/TP2 pendek, Trend=trail/TP lebih jauh. |
-| Session behavior | Ada session filter, tetapi belum ada profil per sesi. | Asia, London, NY punya karakter berbeda. | Tambah preset per sesi: Asia conservative, London balanced, NY volatile/news-aware. |
-| Position scaling | Smart TP sudah ada, tetapi belum optimal untuk trend extension. | Profit besar bisa terpotong terlalu cepat. | Tambah runner mode: partial kecil di TP1, sisa trail pakai fast/slow MA atau ATR trailing. |
-| Broker execution | Sudah lebih aman, tetapi broker XAUUSD punya stop level/freeze level/slippage berbeda. | SL/partial bisa gagal di broker tertentu. | Tambah validasi minimum stop distance dan auto-adjust SL jika terlalu dekat. |
-| Parameter optimization | Belum ada adaptive optimizer internal. | Setting tetap bisa underperform saat volatilitas berubah. | Simpan statistik rolling: winrate per regime, MAE/MFE, spread, session, lalu auto-select preset. |
-
 ---
 
 ## 5. Roadmap Development Agar Lebih Adaptif dan Profitable di M5/M15
 
 ### Prioritas 1 — Market Regime Engine
-
-Buat skor 0–100 untuk kondisi market:
 
 | Komponen | Bobot Awal | Tujuan |
 |---|---:|---|
@@ -303,7 +283,7 @@ Dari data ini EA bisa memilih preset:
 
 ---
 
-## 6. Kesimpulan Profesional
+## 6. Kesimpulan
 
 Untuk XAUUSD M5/M15, arah pengembangan terbaik bukan menambah indikator sebanyak mungkin, tetapi membuat EA **lebih pintar memilih mode**. F10/F11/F12 sudah pondasi bagus untuk false-cross protection. Manual TP dan broker SL membuat eksekusi lebih praktis dan aman. Tahap berikutnya sebaiknya fokus pada:
 
@@ -312,13 +292,3 @@ Untuk XAUUSD M5/M15, arah pengembangan terbaik bukan menambah indikator sebanyak
 3. liquidity sweep filter,
 4. adaptive TP/SL profile,
 5. rolling performance memory.
-
-Jika kelima modul itu dibuat bertahap, EA akan lebih mendekati robot adaptif yang bisa mengikuti perubahan karakter market XAUUSD, terutama pada M5 dan M15.
-
----
-
-## Referensi Pasar yang Dipakai
-
-- World Gold Council — Gold Demand Trends / Central Banks 2026: gold masih dipengaruhi demand bank sentral dan volatilitas geopolitik. https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q1-2026/central-banks
-- World Gold Council — Gold Outlook 2026: performa gold sensitif terhadap risiko, inflasi, suku bunga, dan risk premium. https://www.gold.org/goldhub/research/gold-outlook-2026
-- CME Group — Gold futures / Fed and labor-data commentary 2026: ekspektasi Fed dan data tenaga kerja tetap menjadi katalis penting untuk gold intraday. https://www.cmegroup.com/videos/2026/05/05/gold-futures-test-resistance-as-fomc-division-limits-upside-5-5.html

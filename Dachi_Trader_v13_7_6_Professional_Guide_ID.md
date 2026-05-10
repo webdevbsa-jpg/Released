@@ -184,7 +184,7 @@ Untuk **XAUUSD M5 dan M15**, EA ini paling cocok dipakai sebagai **trend-pullbac
 | Item | Link |
 |---|---|
 | Dachi Trader v13.7.6 EX5 | https://dachi-trader.com/download/Dachi_Trader_v13_7_6.ex5 |
-| Catatan | Link harap di copy dan di paste di halaman baru ! Jangan langsung di klik. Re-attach EA setelah update karena nama file/version berubah. |
+| Catatan | Re-attach EA setelah update karena nama file/version berubah. |
 | Rekomendasi sebelum live | Jalankan Strategy Tester dan forward test minimal 1–2 minggu di broker yang sama. |
 
 ---

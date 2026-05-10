@@ -1,4 +1,4 @@
-# Dachi Trader v13.6.1–v13.7.6 — Professional Guide, Recommended Settings & XAUUSD Development Roadmap
+# Dachi Trader v13.7.6 — Professional Guide, Recommended Settings & XAUUSD Development Roadmap
 
 > Dokumen ini dibuat sebagai **sumber utama versi Markdown**. Jika ada revisi, edit file `.md` ini terlebih dahulu, lalu regenerate PDF.
 >

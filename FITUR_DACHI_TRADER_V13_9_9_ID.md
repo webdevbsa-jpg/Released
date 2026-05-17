@@ -1,18 +1,5 @@
 # Dachi Trader v13.9.9 — Panduan Fitur Ringkas
 
-EA crossing EMA fast/slow dengan stack filter, judge system, dan beberapa exit module. Dokumen ini ringkas — untuk detail teknis per fitur lihat `HANDOFF_DACHI_TRADER_V13_9_9_ID.md` dan `CHANGELOG_AFTER_13_6_1.md`.
-
-## Download
-
-- File EA aktif: `Dachi_Trader_v13_9_9.mq5`
-- Branch saat ini: [`claude/review-handoff-docs-TTCGc`](https://github.com/webdevbsa-jpg/Dachi-EA-Project/blob/claude/review-handoff-docs-TTCGc/Dachi_Trader_v13_9_9.mq5)
-- Raw download (klik kanan → Save As):
-  [Download Dachi_Trader_v13_9_9.mq5 (branch)](https://github.com/webdevbsa-jpg/Dachi-EA-Project/raw/claude/review-handoff-docs-TTCGc/Dachi_Trader_v13_9_9.mq5)
-- Setelah merge ke main, link stabil:
-  `https://github.com/webdevbsa-jpg/Dachi-EA-Project/raw/main/Dachi_Trader_v13_9_9.mq5`
-
-Pasang ke MT5: copy file ke `MQL5/Experts/`, lalu compile di MetaEditor (F7). Attach ke chart symbol target (default tuning untuk XAUUSD).
-
 ---
 
 ## Inti
@@ -552,11 +539,13 @@ InpJudge_Mode  = JUDGE_OFF         // wajib OFF/REPORT_ONLY di SCORING
 
 ---
 
-## Versioning
+## Section Download File
 
-Format versi: `X.Y.Z` (major.feature.fix). Setiap edit bump segment + rename file. Versi saat ini: **13.9.9**.
+| Item | Link |
+|---|---|
+| Dachi Trader v13.9.9 EA | https://dachi-trader.com/download/Dachi_Trader_v13_9_9.ex5 |
+| Dachi Trader v13.9.9 Preset | https://dachi-trader.com/download/dachi_13_9_9_preset.set |
+| Catatan | Re-attach EA setelah update karena nama file/version berubah. |
+| Rekomendasi sebelum live | Jalankan Strategy Tester dan forward test minimal 1–2 minggu di broker yang sama. |
 
-- Detail teknis: `docs/HANDOFF_DACHI_TRADER_V13_9_9_ID.md`
-- Changelog lengkap: `docs/CHANGELOG_AFTER_13_6_1.md`
-- Judge System: `docs/Dachi_Trader_v13_9_0_Judge_System_ID.md`
-- F13 HTF Filter: `docs/Dachi_Trader_v13_8_0_F13_HTF_Filter_ID.md`
+---
